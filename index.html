@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Каша</title>
+    </head>
+
+    <body>
+        <form>
+            <div onclick="sound1()">
+                <img src="images/каша.jpg" class="image">
+            </div>
+
+            <div onclick="sound2()">
+                <img src="images/это.jpg" class="its">
+            </div>
+
+            <div onclick="next()">
+                <img src="images/стрелка.jpg" class="arrow" id="arrow">
+            </div>
+
+            <p>
+                <input type="button" class="char1" id="char1" value="К" onclick="word('char1', 'char1')">
+            </p>
+
+            <p>
+                <input type="button" class="char2" id="char2" value="А" onclick="word('char2', 'char2')">
+            </p>
+
+            <p>
+                <input type="button" class="char3" id="char3" value="Ш" onclick="word('char3', 'char3')">
+            </p>
+
+            <p>
+                <input type="button" class="char2_1" id="char2_1" value="А" onclick="word('char2', 'char2_1')">
+            </p>
+        </form>
+
+        <p class="casha">
+            КАША
+        </p>
+        <script type="text/javascript">
+var clik = 0;
+var i = 4;
+var a = "";
+var element = new Array ();
+while (i != 0) {
+    var rand = Math.floor((Math.random() * (4 + 0)) + 0);
+    if (rand == 0 && element.indexOf('0') == -1) {
+        var but = document.getElementById("char1");
+        but.style.left = String((i - 1) * 200 + 50) + "px";
+        element.push('0');
+        i -= 1;
+    }
+
+    else if (rand == 1 && element.indexOf('1') == -1) {
+        var but = document.getElementById("char2");
+        but.style.left = String((i - 1) * 200 + 50) + "px";
+        element.push('1');
+        i -= 1;
+    }
+
+    else if (rand == 2 && element.indexOf('2') == -1) {
+        var but = document.getElementById("char3");
+        but.style.left = String((i - 1) * 200 + 50) + "px";
+        element.push('2');
+        i -= 1;
+    }
+
+    else if (rand == 3 && element.indexOf('3') == -1) {
+        var but = document.getElementById("char2_1");
+        but.style.left = String((i - 1) * 200 + 50) + "px";
+        element.push('3');
+        i -= 1;
+    }
+}
+function sound1() {
+    var sound = new Audio();
+    sound.src = "sounds/каша.m4a";
+    sound.play();
+}
+
+function sound2() {
+    var sound = new Audio();
+    sound.src = "sounds/это.m4a";
+    sound.play();
+}
+
+function next() {
+    var sound = new Audio();
+    sound.src = "sounds/победа.mp3";
+    sound.play();
+    window.open("levels/утка.html");
+}
+
+function word(letter, id) {
+    var i = document.getElementById(id);
+    if (letter == "char1" && (clik == 0 || clik > 0)) {
+        var sound = new Audio();
+        sound.src = "sounds/к.m4a";
+        sound.play();
+        if (clik == 0) {
+            clik += 1;
+            i.style.top = "450px";
+            i.style.left = "850px";
+        }
+    }
+
+    else if (letter == "char2" && (clik == 1 || clik > 1 && id == a)) {
+        var sound = new Audio();
+        sound.src = "sounds/а.m4a";
+        sound.play();
+        if (clik == 1) {
+            clik += 1;
+            a = id;
+            i.style.top = "450px";
+            i.style.left = "950px";
+        }
+    }
+
+    else if (letter == "char3" && (clik == 2 || clik > 2)) {
+        var sound = new Audio();
+        sound.src = "sounds/ш.m4a";
+        sound.play();
+        if (clik == 2) {
+            clik += 1;
+            i.style.top = "450px";
+            i.style.left = "1050px";
+        }
+    }
+
+    else if (letter == "char2" && (clik == 3 || clik > 3)) {
+        if (clik == 3) {
+            clik += 1;
+            var sound = new Audio();
+            sound.src = "sounds/а.m4a";
+            sound.play();
+            i.style.top = "450px";
+            i.style.left = "1150px";
+            var i = document.getElementById("arrow");
+            i.style.width = "400px"
+            i.style.height = "200px"
+        }
+
+        else {
+            var sound = new Audio();
+            sound.src = "sounds/а.m4a";
+            sound.play();
+        }
+    }
+
+    else if (clik != 4) {
+        var sound = new Audio();
+        sound.src = "sounds/проиграл.mp3";
+        sound.play();
+    }
+}
+
+        </script>
+
+        <style type="text/css">
+            .image {
+                position: absolute;
+                width: 600px;
+                height: 320px;
+                left: 750px;
+            }
+
+            .its {
+                position: absolute;
+                width: 480px;
+                height: 420px;
+                left: 100px;
+                top: -30px;
+            }
+
+            .casha {
+                position: absolute;
+                left: 900px;
+                top: 280px;
+                font-size: 80px;
+
+            }
+
+            .arrow {
+                position: absolute;
+                width: 0px;
+                height: 0px;
+                top: 400px;
+            }
+
+            .char1 {
+                position: absolute;
+                font-size: 80px;
+                top: 500px;
+                background-color: #0000ff;
+                width: 100px;
+                height: 100px;
+            }
+            .char2 {
+                position: absolute;
+                font-size: 80px;
+                top: 500px;
+                background-color: #ff0000;
+                width: 100px;
+                height: 100px;
+            }
+            .char3 {
+                position: absolute;
+                font-size: 80px;
+                top: 500px;
+                background-color: #0000ff;
+                width: 100px;
+                height: 100px;
+            }
+            .char2_1 {
+                position: absolute;
+                font-size: 80px;
+                top: 500px;
+                background-color: #ff0000;
+                width: 100px;
+                height: 100px;
+            }
+
+
+        </style>
+
+    </body>
+
+</html>
